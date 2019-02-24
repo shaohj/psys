@@ -1,0 +1,32 @@
+server:
+  port: 18080
+
+spring:
+  security:
+    user:
+      name: felix
+      password: felix
+  application:
+    name: @artifactId@
+  cloud:
+    config:
+      enabled: false
+eureka:
+  instance:
+    hostname: psys-eureka
+    prefer-ip-address: true
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://felix:felix@${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    eviction-interval-timer-in-ms: 4000
+    enable-self-preservation: false
+    renewal-percent-threshold: 0.9
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
